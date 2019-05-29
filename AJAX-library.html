@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/zl-fetch@latest"></script>
+</head>
+
+<body>
+
+    <script>
+   
+    //GET METHOD
+    zlFetch('https://api.github.com/user/repos')
+    .then(response => 
+    {
+        const headers = response.headers;
+        const body = response.body;
+        console.log(headers);
+        console.log(body);
+    })
+    .catch(error => 
+    {
+    const headers = error.headers;
+    const body = error.body;
+    const status = error.status;
+    console.log(headers);
+        console.log(body);
+    })
+    
+
+// // USING FETCH
+//     fetch('https://jsonplaceholder.typicode.com/posts',{
+//         method:'post',
+//         headers:{
+//        'Content-Type':'application/json'
+//        },
+//        body:JSON.stringify({
+//          title:'this is my first article',
+//          body: 'A shameless plug about myself'}
+//          )
+// })
+// .then(r=>r.json())
+// .then(d=> console.log(d))
+
+
+// USING AJAX LIBRARY ZLFETCH
+
+//   zlFetch('https://jsonplaceholder.typicode.com/posts',{
+//       method:'post',
+//       body:{
+//         title:'this is my first article',
+//          body: 'A shameless plug about myself' 
+//       }
+//   })
+//   .then(r=>console.log(r))
+// .then(d=> console.log(d))
+
+
+//Basic auntentication
+
+const encoded = btoa('jhernandez98@outlook.es:jya300591');
+fetch('https://api.github.com/user/repos',{
+headers:{
+Authorization:`Basic ${encoded}`
+}
+});
+// Basic auntentication with Zlfetch
+
+ zlFetch('https://api.github.com/user/repos',{
+     username:'jhernandez98@outlook.es',
+     password:"jya300591"
+ })
+
+
+
+    </script>
+
+</body>
+</html>
